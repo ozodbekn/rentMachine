@@ -23,7 +23,7 @@ const getAllRegion = async (req, res) => {
 const getRegionById = async (req, res) => {
     try {
         const { id } = req.params;
-        const region = await Region.findByPk(id);
+        const region = await Region.findByPk();
         res.status(200).send({ region });
     } catch (error) {
         sendErrorResponse(error, res);
