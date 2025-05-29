@@ -25,7 +25,7 @@ const getStatusById = async (req, res) => {
         const { id } = req.params;
         const status = await Status.findByPk(id);
         res.status(200).send({ status });
-    } catch (error) {
+    } catch (error){
         sendErrorResponse(error, res);
     }
 }

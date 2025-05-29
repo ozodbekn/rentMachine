@@ -3,6 +3,7 @@ const { sendErrorResponse } = require("../helpers/send_error_response");
 const User = require("../models/user.model");
 const UserAdress = require("../models/user.adress.model");
 const bcrypt = require("bcrypt");
+const Machine = require("../models/machine.model");
 
 const addUser = async (req, res) => {
   try {
@@ -10,7 +11,7 @@ const addUser = async (req, res) => {
 
     const candidate = await User.findOne({ where: { email } });
     if (candidate) {
-      return sendErrorResponse({ message: "Bunday foydalanuvchi mavjud" }, res);
+      return res.status(400).send({ message: "Bunday foydalanuvchi mavjud" }, res);
     }
     if (password !== confirm_password) {
       return sendErrorResponse({ message: "Parollar mos emas" }, res);
@@ -23,7 +24,7 @@ const addUser = async (req, res) => {
       email,
       hashed_password,
     });
-    res.status(201).send({ message: "Yangi kategoriya qo'shildi", newUser });
+    res.status(201).send({ message: "Yangi foydalanuvchi qo'shildi", newUser });
   } catch (error) {
     sendErrorResponse(error, res);
   }
@@ -32,10 +33,15 @@ const addUser = async (req, res) => {
 const findAllUsers = async (req, res) => {
   try {
     const users = await User.findAll({
+      attributes: ["id", "full_name"],
       include: [
         {
           model: UserAdress,
-          attributes: { exclude: ["userId", "createdAt", "updatedAt"] },
+          attributes:["id", "name", "address"],
+        },
+        {
+          model: Machine,
+          attributes: ["name", "price","is_avialeble"],
         },
       ],
     });

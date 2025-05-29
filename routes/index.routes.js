@@ -6,6 +6,8 @@ const statusRouter = require("./status.routes.js");
 const comissionRouter = require("./comission.routes.js");
 const userRouter = require("./users.routes.js");
 const userAddressRouter = require("./userAddress.routes.js");
+const imageRouter = require("./image.routes.js");
+const machineRouter = require("./machine.routes.js");
 
 router.use("/category", categoryRouter);
 router.use("/region", regionRouter);
@@ -14,5 +16,7 @@ router.use("/status", statusRouter);
 router.use("/comission", comissionRouter);
 router.use("/users", userRouter);
 router.use("/address", userAddressRouter);
+router.use("/image", imageRouter);
+router.use("/machine", machineRouter);
 
-module.exports = router;
+module.exports = router;    
