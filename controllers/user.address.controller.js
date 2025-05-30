@@ -44,6 +44,7 @@ const findAllUsersData = async (req, res) => {
         },
       ],
     });
+
     res.status(200).send({ users });
   } catch (error) {
     sendErrorResponse(error, res);
@@ -72,6 +73,8 @@ const findAllUserAddresses = async (req, res) => {
     sendErrorResponse(error, res);
   }
 };
+
+
 
 module.exports = {
   addAdress,

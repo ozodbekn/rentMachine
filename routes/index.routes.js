@@ -8,7 +8,14 @@ const userRouter = require("./users.routes.js");
 const userAddressRouter = require("./userAddress.routes.js");
 const imageRouter = require("./image.routes.js");
 const machineRouter = require("./machine.routes.js");
+const roleRouter = require("./roles.routes.js");
+const userRoleRouter = require("./user_roles.routes.js");
+const authRouter = require("./auth.routes.js");
+const reviewRouter = require("./review.routes.js");
+const paymentRouter = require("./payment.routes.js");
+const contractRouter = require("./contract.routes.js");
 
+router.use("/auth", authRouter);
 router.use("/category", categoryRouter);
 router.use("/region", regionRouter);
 router.use("/district", districtRouter);
@@ -18,5 +25,10 @@ router.use("/users", userRouter);
 router.use("/address", userAddressRouter);
 router.use("/image", imageRouter);
 router.use("/machine", machineRouter);
+router.use("/role", roleRouter);
+router.use("/user-role", userRoleRouter);
+router.use("/payment", paymentRouter);
+router.use("/contract", contractRouter);
+router.use("/review", reviewRouter);
 
-module.exports = router;    
+module.exports = router;
