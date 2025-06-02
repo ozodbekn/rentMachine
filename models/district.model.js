@@ -20,7 +20,7 @@ const District = sequelize.define(
   }
 );
 
-Region.hasMany(District)
-District.belongsTo(Region)
+Region.hasMany(District);
+District.belongsTo(Region);
 
 module.exports = District;

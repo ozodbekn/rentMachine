@@ -1,6 +1,6 @@
 const { sendErrorResponse } = require("../helpers/send_error_response");
 const Role = require("../models/roles.model");
-const UserRole = require("../models/user-role.model");
+const UserRole = require("../models/user_role.model");
 const User = require("../models/user.model");
 
 const addUserRole = async (req, res) => {

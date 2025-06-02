@@ -6,12 +6,7 @@ const addDistrict = async (req, res) => {
   try {
     const { name, regionId } = req.body;
 
-    const region = await Region.findByPk(regionId);
-
-    if (region) {
-      return res.status(400).send({ message: "Bunday foydalanuvchi mavjud" });
-    }
-    const newDistrict = await District.create({ name });
+    const newDistrict = await District.create({ name, regionId });
     res.status(201).send({ message: "Yangi district qo'shildi", newDistrict });
   } catch (error) {
     sendErrorResponse(error, res);
@@ -40,9 +35,10 @@ const getDistrictById = async (req, res) => {
 const updateDistrictById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name } = req.body;
+    const { name, regionId } = req.body;
     const district = await District.findByPk(id);
     district.name = name;
+    district.regionId = regionId;
     await district.save();
     res.status(200).send({ district });
   } catch (error) {

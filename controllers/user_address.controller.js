@@ -73,10 +73,44 @@ const findAllUserAddresses = async (req, res) => {
     sendErrorResponse(error, res);
   }
 };
+const getAddressById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const address = await UserAdress.findByPk(id);
+    res.status(200).send({ address });
+  } catch (error) {
+    sendErrorResponse(error, res);
+  }
+};
 
+const updateAddressById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const address = await UserAdress.findByPk(id);
+    address.name = req.body.name;
+    address.address = req.body.address;
+    await address.save();
+    res.status(200).send({ address });
+  } catch (error) {
+    sendErrorResponse(error, res);
+  }
+};
 
+const deleteAddressById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const address = await UserAdress.findByPk(id);
+    await address.destroy();
+    res.status(200).send({ message: "Address deleted" });
+  } catch (error) {
+    sendErrorResponse(error, res);
+  }
+};
 
 module.exports = {
   addAdress,
   findAllUserAddresses,
+  getAddressById,
+  updateAddressById,
+  deleteAddressById,
 };

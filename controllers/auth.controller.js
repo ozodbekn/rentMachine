@@ -30,6 +30,7 @@ const login = async (req, res) => {
         .status(400)
         .send({ message: "Email  yoki parol noto'g'ri" }, res);
     }
+
     const payload = {
       id: user.id,
       email: user.email,
@@ -61,7 +62,8 @@ const logout = async (req, res) => {
     }
 
     const decodedToken = await jwtService.verifyRefreshToken(refreshToken);
-    console.log(decodedToken);
+
+
 
     const user = await User.update(
       { hashed_token: null },

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { addUserRole, findAllUserRoles, deleteUserRole, findUserRoleById, updateUserRole, removeUserRole } = require("../controllers/user.role.controller");
+const { addUserRole, findAllUserRoles, deleteUserRole, findUserRoleById, updateUserRole, removeUserRole } = require("../controllers/user_role.controller");
 
 router.post("/", addUserRole);
 router.get("/", findAllUserRoles);
